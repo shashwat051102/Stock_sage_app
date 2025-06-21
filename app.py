@@ -141,8 +141,6 @@ if fetch_btn:
                             # Extract relevant data from CrewOutput object
                             if hasattr(result, "output"):
                                 explanation = result.output  # Assuming 'output' contains the explanation
-                            elif isinstance(result, str):
-                                explanation = result.strip()  # If result is a string, strip whitespace
                             else:
                                 explanation = str(result)  # Fallback to string conversion
 
