@@ -65,9 +65,9 @@ if fetch_btn:
                 # Validate the response and ensure "values" exists and is not None
                 if "values" not in data or not isinstance(data["values"], list) or len(data["values"]) == 0:
                     st.error(f"❌ Error fetching data: {data.get('message', 'No data available for the given symbol.')}")
-                    st.json(data)  # Debugging: Show the raw response
+                    st.json(data) 
                 else:
-                    df = pd.DataFrame(data["values"])[::-1]  # reverse chronological
+                    df = pd.DataFrame(data["values"])[::-1] 
                     df[["open", "high", "low", "close", "volume"]] = df[["open", "high", "low", "close", "volume"]].astype(float)
                     df["datetime"] = pd.to_datetime(df["datetime"])
                     df["year"] = df["datetime"].dt.year
@@ -143,11 +143,11 @@ if fetch_btn:
                             # Extract relevant data from CrewOutput object
                             explanation = None
                             if hasattr(result, "output"):
-                                explanation = result.output  # Assuming 'output' contains the explanation
+                                explanation = result.output  
                             elif isinstance(result, dict):
-                                explanation = result.get("output", "No explanation available.")  # Handle dictionary case
+                                explanation = result.get("output", "No explanation available.") 
                             else:
-                                explanation = str(result)  # Fallback to string conversion
+                                explanation = str(result)  
 
                         st.markdown("### Explanation of Prediction")
                         st.info(explanation, icon="💡")
