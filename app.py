@@ -1,4 +1,3 @@
-import patch_sqlite
 import streamlit as st
 import requests
 import pandas as pd
@@ -62,8 +61,8 @@ if fetch_btn:
                 response = requests.get(url, params=params)
                 data = response.json()
 
-                if "values" not in data:
-                    st.error(f"❌ Error fetching data: {data.get('message', 'Unknown error')}")
+                if "values" not in data or not data["values"]:
+                    st.error(f"❌ Error fetching data: {data.get('message', 'No data available for the given symbol.')}")
                     st.json(data)
                 else:
                     df = pd.DataFrame(data["values"])[::-1]  # reverse chronological
