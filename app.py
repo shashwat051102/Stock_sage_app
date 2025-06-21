@@ -134,8 +134,9 @@ if fetch_btn:
                     with col2:
                         st.subheader("🤖 Explanation")
                         with st.spinner("🧠 Reasoning about the prediction..."):
+                            # Convert predicted_actual to a standard Python float
                             crew = Crew(agents=[Reason_agent], tasks=[Reason_task])
-                            result = crew.kickoff({"predicted_actual": predicted_actual, "symbol": symbol})
+                            result = crew.kickoff({"predicted_actual": float(predicted_actual), "symbol": symbol})
 
                         st.markdown("### Explanation of Prediction")
                         st.info(result, icon="💡")
