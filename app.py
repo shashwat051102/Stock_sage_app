@@ -62,7 +62,7 @@ if fetch_btn:
                 response = requests.get(url, params=params)
                 data = response.json()
 
-                if "values" not in data or not data["values"]:
+                if "values" not in data or not isinstance(data["values"], list) or len(data["values"]) == 0:
                     st.error(f"❌ Error fetching data: {data.get('message', 'No data available for the given symbol.')}")
                     st.json(data)
                 else:
@@ -151,5 +151,8 @@ if fetch_btn:
                         st.markdown("### Explanation of Prediction")
                         st.info(explanation, icon="💡")
                         download_pdf_report(explanation, filename_prefix=f"{symbol}_prediction_report", is_markdown=True)
+
+            except Exception as e:
+                st.error(f"❗ Exception occurred: `{e}`")
 
 
