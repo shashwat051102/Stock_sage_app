@@ -62,9 +62,10 @@ if fetch_btn:
                 response = requests.get(url, params=params)
                 data = response.json()
 
+                # Validate the response and ensure "values" exists and is not None
                 if "values" not in data or not isinstance(data["values"], list) or len(data["values"]) == 0:
                     st.error(f"❌ Error fetching data: {data.get('message', 'No data available for the given symbol.')}")
-                    st.json(data)
+                    st.json(data)  # Debugging: Show the raw response
                 else:
                     df = pd.DataFrame(data["values"])[::-1]  # reverse chronological
                     df[["open", "high", "low", "close", "volume"]] = df[["open", "high", "low", "close", "volume"]].astype(float)
@@ -154,5 +155,4 @@ if fetch_btn:
 
             except Exception as e:
                 st.error(f"❗ Exception occurred: `{e}`")
-
 
