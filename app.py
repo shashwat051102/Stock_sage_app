@@ -152,5 +152,4 @@ if fetch_btn:
                         st.info(explanation, icon="💡")
                         download_pdf_report(explanation, filename_prefix=f"{symbol}_prediction_report", is_markdown=True)
 
-            except Exception as e:
-                st.error(f"❗ Exception occurred: `{e}`")
+
