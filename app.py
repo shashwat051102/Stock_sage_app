@@ -138,13 +138,15 @@ if fetch_btn:
                             crew = Crew(agents=[Reason_agent], tasks=[Reason_task])
                             result = crew.kickoff({"predicted_actual": float(predicted_actual), "symbol": symbol})
 
-                            # Ensure result is a string before displaying it
-                            if not isinstance(result, str):
-                                result = str(result)
+                            # Extract relevant data from CrewOutput object
+                            if hasattr(result, "output"):
+                                explanation = result.output  # Assuming 'output' contains the explanation
+                            else:
+                                explanation = str(result)  # Fallback to string conversion
 
                         st.markdown("### Explanation of Prediction")
-                        st.info(result, icon="💡")
-                        download_pdf_report(result, filename_prefix=f"{symbol}_prediction_report", is_markdown=True)
+                        st.info(explanation, icon="💡")
+                        download_pdf_report(explanation, filename_prefix=f"{symbol}_prediction_report", is_markdown=True)
 
             except Exception as e:
                 st.error(f"❗ Exception occurred: `{e}`")
