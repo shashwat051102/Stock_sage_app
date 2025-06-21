@@ -140,8 +140,11 @@ if fetch_btn:
                             result = crew.kickoff({"predicted_actual": float(predicted_actual), "symbol": symbol})
 
                             # Extract relevant data from CrewOutput object
+                            explanation = None
                             if hasattr(result, "output"):
                                 explanation = result.output  # Assuming 'output' contains the explanation
+                            elif isinstance(result, dict):
+                                explanation = result.get("output", "No explanation available.")  # Handle dictionary case
                             else:
                                 explanation = str(result)  # Fallback to string conversion
 
