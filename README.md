@@ -38,7 +38,7 @@ The machine learning pipeline (data collection, preprocessing, model training, a
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo/Stock_Predictor_App.git
+   git clone [https://github.com/your-repo/Stock_Predictor_App.git](https://github.com/shashwat051102/Stock_sage_app.git)
    cd Stock_Predictor_App
    ```
 
